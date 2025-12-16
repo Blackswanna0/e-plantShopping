@@ -4,6 +4,9 @@ export const CartSlice = createSlice({
   name: 'cart',
   initialState: {
     items: [], // Initialize items as an empty array
+    showCart: false,
+    showPlants: false,
+    addedToCart: {},
   },
   reducers: {
     addItem: (state, action) => {
@@ -29,9 +32,18 @@ export const CartSlice = createSlice({
         itemToUpdate.quantity = quantity; // If the item is found, update its quantity to the new value
       }
     },
+    setShowCart: (state, action) => {
+      state.showCart = action.payload;
+    },
+    setShowPlants: (state, action) => {
+      state.showPlants = action.payload;
+    },
+    setAddedToCart: (state, action) => {
+      state.addedToCart = { ...state.addedToCart, ...action.payload };
+    },
   },
 });
 
-export const { addItem, removeItem, updateQuantity } = CartSlice.actions;
+export const { addItem, removeItem, updateQuantity, setShowCart, setShowPlants, setAddedToCart } = CartSlice.actions;
 
 export default CartSlice.reducer;
